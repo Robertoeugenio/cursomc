@@ -1,24 +1,30 @@
 package com.robertoeugenio.cursomc.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Categoria implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+
+	@Id                                                  //mapeando basico
+	@GeneratedValue(strategy = GenerationType.IDENTITY)  //mapeando basico
 	private Integer id;
 	private String nome;
+     
 	
-	public Categoria () {
-		
+	 @ManyToMany(mappedBy= "categorias") //mapeando no atributo categoria muitos pra muitos
+	private List<Produto> produtos = new ArrayList<>();// associaçao porque sao varios produtos para uma categoria
+
+	public Categoria() {
+
 	}
 
 	public Categoria(Integer id, String nome) {
@@ -43,6 +49,13 @@ public class Categoria implements Serializable {
 		this.nome = nome;
 	}
 
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
