@@ -12,10 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Produto implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id // mapeando basico
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // mapeando basico
 	private Integer id;
@@ -28,52 +30,42 @@ public class Produto implements Serializable {
 		this.nome = nome;
 		this.preco = preco;
 	}
-	
-	
+
 	public Integer getId() {
 		return id;
 	}
-
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-
 	public String getNome() {
 		return nome;
 	}
-
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-
 	public Double getPreco() {
 		return preco;
 	}
-
 
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
 
-
 	public List<Categoria> getCategorias() {
 		return categorias;
 	}
-
 
 	public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;
 	}
 
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -109,11 +101,10 @@ public class Produto implements Serializable {
 	}
 
 	
-
+	@JsonBackReference // ele vai omitir a lista de categoria para cada produto
 	@ManyToMany
-	@JoinTable(name = "PRODUTO_CATEGORIA",
-      joinColumns = @JoinColumn (name = "produto_id"),    // nome chave estrangeira
-      inverseJoinColumns = @JoinColumn(name = "categoria_id") // chama a outra chave estrangeira
-	)  //define a tabelinha muitos pra muitos 
-	private List<Categoria> categorias = new ArrayList<>();    //
+	@JoinTable(name = "PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name = "produto_id"), // nome chave estrangeira
+			inverseJoinColumns = @JoinColumn(name = "categoria_id") // chama a outra chave estrangeira
+	) // define a tabelinha muitos pra muitos
+	private List<Categoria> categorias = new ArrayList<>(); //
 }

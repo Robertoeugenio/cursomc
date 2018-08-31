@@ -10,17 +10,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Categoria implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id                                                  //mapeando basico
-	@GeneratedValue(strategy = GenerationType.IDENTITY)  //mapeando basico
+	@Id // mapeando basico
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // mapeando basico
 	private Integer id;
 	private String nome;
-     
-	
-	 @ManyToMany(mappedBy= "categorias") //mapeando no atributo categoria muitos pra muitos
+
+	@JsonManagedReference //para vir os objetos associados
+	@ManyToMany(mappedBy = "categorias") // mapeando no atributo categoria muitos pra muitos
 	private List<Produto> produtos = new ArrayList<>();// associaçao porque sao varios produtos para uma categoria
 
 	public Categoria() {
@@ -56,6 +58,7 @@ public class Categoria implements Serializable {
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
