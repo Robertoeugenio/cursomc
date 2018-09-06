@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.robertoeugenio.cursomc.domain.enums.TipoCliente;
 
 
@@ -28,7 +29,8 @@ import com.robertoeugenio.cursomc.domain.enums.TipoCliente;
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
-
+	
+	@JsonManagedReference //serialização do endereço 
 	@OneToMany(mappedBy="cliente") //mapeando 
 	private List<Endereco> enderecos = new ArrayList<>();
 	@ElementCollection
