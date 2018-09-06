@@ -3,10 +3,10 @@ package com.robertoeugenio.cursomc.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.robertoeugenio.cursomc.domain.Cidade;
+import com.robertoeugenio.cursomc.domain.Endereco;
 
 @Repository
-public interface CidadeRepository extends JpaRepository<Cidade, Integer> {
+public interface EnderecoRepository extends JpaRepository<Endereco, Integer> {
 	
 
 }

@@ -23,6 +23,9 @@ public class Produto implements Serializable {
 	private Integer id;
 	private String nome;
 	private Double preco;
+	public Produto() {
+		
+	}
 
 	public Produto(Integer id, String nome, Double preco) {
 		super();
