@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -33,10 +34,17 @@ import com.robertoeugenio.cursomc.domain.enums.TipoCliente;
 	@JsonManagedReference //serialização do endereço 
 	@OneToMany(mappedBy="cliente") //mapeando 
 	private List<Endereco> enderecos = new ArrayList<>();
+
+	@OneToMany(mappedBy="cliente") //dizendo que foi mapeado
+	private List<Pedido> pedidos = new ArrayList<>();  //cliente tem varios pedidos
+	public Cliente() {
+	}	
+	
 	@ElementCollection
 	@CollectionTable(name="TELEFONE")//nome da tabela no banco de dados 
 	private Set<String> telefones = new HashSet<>();
-
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -118,7 +126,12 @@ import com.robertoeugenio.cursomc.domain.enums.TipoCliente;
 		this.telefones = telefones;
 	}
 
-	public Cliente() {
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 
 	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
