@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.robertoeugenio.cursomc.domain.enums.EstadoPagamento;
 
 	@Entity
@@ -22,7 +22,7 @@ import com.robertoeugenio.cursomc.domain.enums.EstadoPagamento;
 	private Integer id;
 	private Integer estado;
 
-	@JsonBackReference // nao deixar ser serializado
+	@JsonIgnore // nao deixar ser serializado
 	@OneToOne // relação de um para um
 	@JoinColumn(name = "pedido_id") // mapeando
 	@MapsId // pra garantir que seja o mesmo id

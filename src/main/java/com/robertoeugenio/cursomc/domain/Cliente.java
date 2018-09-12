@@ -14,8 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.robertoeugenio.cursomc.domain.enums.TipoCliente;
 
 
@@ -31,11 +30,13 @@ import com.robertoeugenio.cursomc.domain.enums.TipoCliente;
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
-	@JsonManagedReference //serialização do endereço 
+	
 	@OneToMany(mappedBy="cliente") //mapeando 
 	private List<Endereco> enderecos = new ArrayList<>();
 
-	@JsonBackReference   // pedidos cliente nao vao ser serializados
+	
+	
+	@JsonIgnore
 	@OneToMany(mappedBy="cliente") //dizendo que foi mapeado
 	private List<Pedido> pedidos = new ArrayList<>();  //cliente tem varios pedidos
 	public Cliente() {
@@ -44,9 +45,7 @@ import com.robertoeugenio.cursomc.domain.enums.TipoCliente;
 	@ElementCollection
 	@CollectionTable(name="TELEFONE")//nome da tabela no banco de dados 
 	private Set<String> telefones = new HashSet<>();
-	
-	
-	public Integer getId() {
+	 Integer getId() {
 		return id;
 	}
 

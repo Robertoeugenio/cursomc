@@ -15,7 +15,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -124,7 +123,7 @@ public class Produto implements Serializable {
 		this.categorias = categorias;
 	}
 
-	@JsonBackReference // ele vai omitir a lista de categoria para cada produto
+	@JsonIgnore// ele vai omitir a lista de categoria para cada produto
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name = "produto_id"), // nome chave estrangeira
 			inverseJoinColumns = @JoinColumn(name = "categoria_id") // chama a outra chave estrangeira
