@@ -2,8 +2,6 @@ package com.robertoeugenio.cursomc.resources;
 
 import java.net.URI;
 
-import javax.servlet.Servlet;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,15 +21,25 @@ public class CategoriaResource {
 	private CategoriaService service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> find(@PathVariable Integer id) {// tipo especial armazena informaçoes
-		Categoria obj = service.buscar(id);
+	public ResponseEntity<Categoria> find(@PathVariable Integer id) {// tipo especial armazena informaçoes
+		Categoria obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
-	
-	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Categoria obj){ //vai para o banco de dados e fornecer o id //requestbody faz ser convertido para objeto categoria automaticamente
+
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> insert(@RequestBody Categoria obj) { // vai para o banco de dados e fornecer o id
+																		// //requestbody faz ser convertido para objeto
+																		// categoria automaticamente
 		obj = service.insert(obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();//caracteristica do framework
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();// caracteristica
+																														// do
+																														// framework
 		return ResponseEntity.created(uri).build();
-	}	
+	}
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT) //requisição feito no put
+	public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id) {
+		obj.setId(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build(); //conteudo  vazio
+	}
 }
