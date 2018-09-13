@@ -1,5 +1,6 @@
 package com.robertoeugenio.cursomc.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +40,14 @@ public class CategoriaService {
 		find(id);
 		try {
 			repo.deleteById(id);
-		} catch (DataIntegrityViolationException e) { // mensagem quando for deletar 
+			
+		} 
+		catch (DataIntegrityViolationException e) { // mensagem quando for deletar 
 			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
 
 		}
+	}
+	public List<Categoria> findAll(){
+		return repo.findAll();
 	}
 }
