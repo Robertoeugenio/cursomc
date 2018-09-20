@@ -35,16 +35,16 @@ public class CategoriaResource {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO objDTO) { // vai para o banco de dados e fornecer o id // //requestbody faz ser convertido para objeto// categoria automaticamente																
-		Categoria obj = service.fromDTO(objDTO);
+	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO objDto) { // vai para o banco de dados e fornecer o id // //requestbody faz ser convertido para objeto// categoria automaticamente																
+		Categoria obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();// caracteristica																														// do																												// framework
 		return ResponseEntity.created(uri).build();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT) // requisição feito no put
-	public ResponseEntity<Void> update(@Valid @RequestBody CategoriaDTO objDTO, @PathVariable Integer id) {
-		Categoria obj = service.fromDTO(objDTO);
+	public ResponseEntity<Void> update(@Valid @RequestBody CategoriaDTO objDto, @PathVariable Integer id) {
+		Categoria obj = service.fromDTO(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build(); // conteudo vazio
@@ -64,7 +64,6 @@ public class CategoriaResource {
 	}
 
 	@RequestMapping(value = "/page", method = RequestMethod.GET) // nao precisa de id pois vai buscar todas as categorias
-
 	public ResponseEntity<Page<CategoriaDTO>> findPage( // tipo especial armazena informaçoes
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,

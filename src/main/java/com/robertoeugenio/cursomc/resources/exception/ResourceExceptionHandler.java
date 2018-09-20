@@ -48,8 +48,6 @@ public class ResourceExceptionHandler {
 		for (FieldError x : e.getBindingResult().getFieldErrors()) {
 			err.addError(x.getField(), x.getDefaultMessage()); // pegar o nome do campo e a menssagem
 		}
-		
-		
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
 	}
 
