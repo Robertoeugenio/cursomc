@@ -42,6 +42,15 @@ import com.robertoeugenio.cursomc.domain.enums.TipoCliente;
 	public Cliente() {
 	}	
 	
+	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.cpfOuCnpj = cpfOuCnpj;
+		this.tipo = (tipo == null) ? null : tipo.getCod();
+	}
+	
 	@ElementCollection
 	@CollectionTable(name="TELEFONE")//nome da tabela no banco de dados 
 	private Set<String> telefones = new HashSet<>();
@@ -134,13 +143,6 @@ import com.robertoeugenio.cursomc.domain.enums.TipoCliente;
 		this.pedidos = pedidos;
 	} 
 
-	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.email = email;
-		this.cpfOuCnpj = cpfOuCnpj;
-		this.tipo = (tipo == null) ? null : tipo.getCod();
-	}
+	
 
 }

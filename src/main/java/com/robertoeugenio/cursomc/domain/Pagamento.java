@@ -51,7 +51,7 @@ import com.robertoeugenio.cursomc.domain.enums.EstadoPagamento;
 	public Pagamento(Integer id, EstadoPagamento estado, Pedido pedido) {
 		super();
 		this.id = id;
-		this.estado = estado.getCod();
+		this.estado = (estado == null) ? null : estado.getCod(); //se caso for null confirma os dados
 		this.pedido = pedido;
 	}
 
