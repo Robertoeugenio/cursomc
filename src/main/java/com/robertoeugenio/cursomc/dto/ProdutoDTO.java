@@ -1,21 +1,16 @@
 package com.robertoeugenio.cursomc.dto;
-
 import java.io.Serializable;
 
 import com.robertoeugenio.cursomc.domain.Produto;
-
-public class ProdutoDTO implements Serializable {
+ public class ProdutoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	private Integer id;
+ 	private Integer id;
 	private String nome;
 	private Double preco;
-
+	
 	public ProdutoDTO() {
 	}
-
-
-	public ProdutoDTO(Produto obj) {
+ 	public ProdutoDTO(Produto obj) {
 		id = obj.getId();
 		nome = obj.getNome();
 		preco = obj.getPreco();
@@ -24,25 +19,19 @@ public class ProdutoDTO implements Serializable {
 	public Integer getId() {
 		return id;
 	}
-
-	public void setId(Integer id) {
+ 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public String getNome() {
+ 	public String getNome() {
 		return nome;
 	}
-
-	public void setNome(String nome) {
+ 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public Double getPreco() {
+ 	public Double getPreco() {
 		return preco;
 	}
-
-	public void setPreco(Double preco) {
+ 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
-	
 }

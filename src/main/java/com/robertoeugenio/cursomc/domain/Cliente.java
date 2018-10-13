@@ -43,6 +43,7 @@ import com.robertoeugenio.cursomc.domain.enums.TipoCliente;
 	@JsonIgnore
 	@OneToMany(mappedBy="cliente") //dizendo que foi mapeado
 	private List<Pedido> pedidos = new ArrayList<>();  //cliente tem varios pedidos
+	
 	public Cliente() {
 	}	
 	

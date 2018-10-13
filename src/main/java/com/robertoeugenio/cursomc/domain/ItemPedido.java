@@ -36,16 +36,23 @@ public class ItemPedido implements Serializable {
 	}
      public double getSubTotal() {
 		
-		return(preco - desconto)* quantidade;
+		return(preco - desconto) * quantidade;
      }
 	@JsonIgnore
 	public Pedido getPedido() { // para ter acesso direto ao conteudo fora da classe
 		return id.getPedido();
 	}
-	
+
+	public void setPedido(Pedido pedido) {
+		id.setPedido(pedido);
+	}
 	
 	public Produto getProduto() { // para ter acesso direto ao conteudo fora da classe
 		return id.getProduto();
+	}
+	
+	public void setProduto(Produto produto) {
+		id.setProduto(produto);
 	}
 
 	public ItemPedidoPk getId() {
