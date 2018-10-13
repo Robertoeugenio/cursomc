@@ -18,11 +18,11 @@ public class ItemPedido implements Serializable {
 	@JsonIgnore // vai ser ignorado tudo que bem do pedido pk
 	@EmbeddedId //chave composta
 	private ItemPedidoPk id = new ItemPedidoPk(); // instanciando esse id é composto
-
 	private Double desconto;
 	private Integer quantidade;
 	private Double preco;
 
+	
 	public ItemPedido() {
 	}
 
@@ -34,7 +34,10 @@ public class ItemPedido implements Serializable {
 		this.quantidade = quantidade;
 		this.preco = preco;
 	}
-	
+     public double getSubTotal() {
+		
+		return(preco - desconto)* quantidade;
+     }
 	@JsonIgnore
 	public Pedido getPedido() { // para ter acesso direto ao conteudo fora da classe
 		return id.getPedido();
