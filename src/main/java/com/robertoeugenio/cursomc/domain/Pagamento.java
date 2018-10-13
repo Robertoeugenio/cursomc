@@ -89,7 +89,4 @@ import com.robertoeugenio.cursomc.domain.enums.EstadoPagamento;
 		return result;
 	}
 
-	public void setEstado(Integer estado) {
-		this.estado = estado;
-	}
 }
