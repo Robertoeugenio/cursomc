@@ -1,4 +1,4 @@
-package com.robertoeugenio.cursomc.domain;
+	package com.robertoeugenio.cursomc.domain;
 
 import java.io.Serializable;
 import java.util.Date;
