@@ -30,10 +30,9 @@ import com.robertoeugenio.cursomc.repositories.PagamentoRepository;
 import com.robertoeugenio.cursomc.repositories.PedidoRepository;
 import com.robertoeugenio.cursomc.repositories.ProdutoRepository;
 
-
 @Service
 public class DBService {
-	
+
 	@Autowired // para inicicar salvando
 	private CategoriaRepository categoriaRepository;
 	@Autowired
@@ -51,20 +50,19 @@ public class DBService {
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
 	@Autowired
-	private ItemPedidoRepository itemPedidoRepository;  //para salvar os dados
-	
-	
-	
-	public void  instatiateTestDatabase() throws ParseException {
+	private ItemPedidoRepository itemPedidoRepository; // para salvar os dados
+
+	public void instantiateTestDatabase() throws ParseException {
 
 		Categoria cat1 = new Categoria(null, "Informática");
-		Categoria cat2 = new Categoria(null, "Escritório");// instanciados 
+		Categoria cat2 = new Categoria(null, "Escritório");// instanciados
 		Categoria cat3 = new Categoria(null, "Cama mesa e banho"); // nova categoria na aula 35 01,55
-		Categoria cat4 = new Categoria (null,"Eletrônicos" ); // idem acima e abaixo
-		Categoria cat5 = new Categoria (null,"Jardinagem" ); // idem acima e abaixo
-		Categoria cat6 = new Categoria (null,"Decoração" ); // idem acima e abaixo
-		Categoria cat7 = new Categoria (null,"Perfumaria" ); // idem acima e abaixo
-
+		Categoria cat4 = new Categoria(null, "Eletrônicos"); // idem acima e abaixo
+		Categoria cat5 = new Categoria(null, "Jardinagem"); // idem acima e abaixo
+		Categoria cat6 = new Categoria(null, "Decoração"); // idem acima e abaixo
+		Categoria cat7 = new Categoria(null, "Perfumaria"); // idem acima e abaixo
+		
+		
 		Produto p1 = new Produto(null, "Computador", 2000.00);
 		Produto p2 = new Produto(null, "Impressora", 800.00);
 		Produto p3 = new Produto(null, "Mouse", 80.00);
@@ -73,10 +71,10 @@ public class DBService {
 		Produto p6 = new Produto(null, "Colcha", 200.00);
 		Produto p7 = new Produto(null, "TV true color", 1200.00);
 		Produto p8 = new Produto(null, "Roçadeira", 800.00);
-		Produto p9 = new Produto(null, "Abajour",  100.00);
+		Produto p9 = new Produto(null, "Abajour", 100.00);
 		Produto p10 = new Produto(null, "Pendente", 180.00);
-		Produto p11 = new Produto(null,	"Shampoo", 90.00);
-		
+		Produto p11 = new Produto(null, "Shampoo", 90.00);
+
 		cat1.getProdutos().addAll(Arrays.asList(p1, p2, p3)); // fazendo as associaçoes de mao dupla
 		cat2.getProdutos().addAll(Arrays.asList(p2, p4));
 		cat3.getProdutos().addAll(Arrays.asList(p5, p6));
@@ -84,7 +82,7 @@ public class DBService {
 		cat5.getProdutos().addAll(Arrays.asList(p8));
 		cat6.getProdutos().addAll(Arrays.asList(p9, p10));
 		cat7.getProdutos().addAll(Arrays.asList(p11));
-		
+
 		p1.getCategorias().addAll(Arrays.asList(cat1, cat4));
 		p2.getCategorias().addAll(Arrays.asList(cat1, cat2, cat4));
 		p3.getCategorias().addAll(Arrays.asList(cat1, cat4));
@@ -95,10 +93,11 @@ public class DBService {
 		p8.getCategorias().addAll(Arrays.asList(cat5));
 		p9.getCategorias().addAll(Arrays.asList(cat6));
 		p10.getCategorias().addAll(Arrays.asList(cat6));
-		p11.getCategorias().addAll(Arrays.asList(cat7));		
-		
+		p11.getCategorias().addAll(Arrays.asList(cat7));
 
-		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));// criar lista automatica com elementos que eu quiser
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));// criar lista automatica
+																								// com elementos que eu
+																								// quiser
 		produtorepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11));
 
 		Estado est1 = new Estado(null, "Minas Gerais");
@@ -110,51 +109,52 @@ public class DBService {
 
 		est1.getCidades().addAll(Arrays.asList(c1));
 		est2.getCidades().addAll(Arrays.asList(c2, c3));
-		
-		estadoRepository.saveAll(Arrays.asList(est1,est2));
-		cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
-		
-		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);//instaciando
-		
+
+		estadoRepository.saveAll(Arrays.asList(est1, est2));
+		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+
+		Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);// instaciando
+
 		cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393")); // instanciando
-		
+
 		Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 303 ", "Jardim", "38220834", cli1, c1);
 		Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cli1, c2);
-		
-		cli1.getEnderecos().addAll(Arrays.asList(e1,e2)); // isntanciando
-		
+
+		cli1.getEnderecos().addAll(Arrays.asList(e1, e2)); // isntanciando
+
 		clienteRepository.saveAll(Arrays.asList(cli1));
-	    enderecoRepository.saveAll(Arrays.asList(e1, e2));	
-	    
-	    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-	    
-	    Pedido ped1 = new Pedido(null, sdf.parse("30/09/2017 10:32"), cli1, e1);
-	    Pedido ped2 = new Pedido(null, sdf.parse("10/10/2017 19:35"), cli1, e1);
-	    
-	    Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);//instanciando pgto
-	    ped1.setPagamento(pagto1); //pedido do pgto1
-	    
-	    Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("20/10/2017 00:00 "), null);//instanciando pgto
-	    ped2.setPagamento(pagto2);
-	
-	    cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
-	    //para salvar esses objetos temos que criar o repository
-	    
-	    pedidoRepository.saveAll(Arrays.asList(ped1, ped2)); //gravando os dados
-	    pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2)); //gravando os dados
-	    
-	    ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);   //associaçao
-	    ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
-	    ItemPedido ip3 = new ItemPedido(ped2, p2, 0.00, 1, 800.00);
-	
-	    ped1.getItens().addAll(Arrays.asList(ip1, ip2));
-	    ped2.getItens().addAll(Arrays.asList(ip3));
-	   
-	    p1.getItens().addAll(Arrays.asList(ip1));
-	    p2.getItens().addAll(Arrays.asList(ip3));
-	    p3.getItens().addAll(Arrays.asList(ip2));
-	    
-	   itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+		Pedido ped1 = new Pedido(null, sdf.parse("30/09/2017 10:32"), cli1, e1);
+		Pedido ped2 = new Pedido(null, sdf.parse("10/10/2017 19:35"), cli1, e1);
+
+		Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);// instanciando pgto
+		ped1.setPagamento(pagto1); // pedido do pgto1
+
+		Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("20/10/2017 00:00 "),
+				null);// instanciando pgto
+		ped2.setPagamento(pagto2);
+
+		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
+		// para salvar esses objetos temos que criar o repository
+
+		pedidoRepository.saveAll(Arrays.asList(ped1, ped2)); // gravando os dados
+		pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2)); // gravando os dados
+
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00); // associaçao
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
+		ItemPedido ip3 = new ItemPedido(ped2, p2, 0.00, 1, 800.00);
+
+		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
+
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip3));
+		p3.getItens().addAll(Arrays.asList(ip2));
+
+		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
 	}
 
 }
